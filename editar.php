@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<!-- PÁGINA PARA FAZER O CADASTRO DO CLIENTE -->
+<!-- PÁGINA PARA EDITAR O CADASTRO DO CLIENTE -->
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -45,6 +45,7 @@
                 <div class="row" id="row-form">
                     <div class="col">
                         <form method="POST" action="conexao.php">
+                            <input type="hidden" value="<?php echo $id; ?>">
                             <div class="mb-3">
                                 <label for="Nome" class="form-label">Nome:</label>
                                 <input type="text" class="form-control" id="exampleFormControlInput1 nome" name="nome" autocomplete="off" required>
@@ -74,7 +75,7 @@
                                 <label for="cep" class="form-label">CEP: </label>
                                 <input type="number" class="form-control" id="exampleFormControlInput1 cep" name="cep" autocomplete="off" placeholder="xxxxx-xxx" required>
                             </div>
-                            <input type="submit" value="Cadastrar" name="cadastrar" id="cadastrar">
+                            <input type="submit" value="Editar" name="cadastrar" id="cadastrar">
                         </form>
                     </div>
                 </div>

@@ -29,14 +29,24 @@
     </head>
     <body>
         <div class="container" id="container">
-                <div class="row">
+        <div class="row">
                     <div class="col">
                         <nav class="navbar navbar-expand-lg bg-body-tertiary, fundo">
                             <div class="container-fluid">
-                                <a class="navbar-brand" href="index.html">PHP - Sistema de Acesso ao Banco de Dados</a>
+                                <a id="titleNav" class="navbar-brand" href="index.html">PHP - Sistema de Cadastro ao Banco de Dados</a>
                                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>
                                 </button>
+                                <div class="collapse navbar-collapse" id="navbarNav">
+                                    <ul class="navbar-nav">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="link-header" aria-current="page" href="index.html">Cadastrar</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="tabelaDados.php">Consultar</a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </nav>
                     </div>
@@ -49,16 +59,17 @@
             <div class="row">
                 <div class="col boxDados">
                     <div class="table-responsive">
-                        <table class="table table-borderless" id="tabela">
+                        <table class="table" id="tabela">
                             <thead>
                                 <tr class="headerTable">
-                                    <th scope="col">Id</th>
+                                    <th scope="col titleTable">Id</th>
                                     <th scope="col">Nome</th>
                                     <th scope="col">Endereço</th>
                                     <th scope="col">Bairro</th>
                                     <th scope="col">Cidade</th>
                                     <th scope="col">Estado</th>
                                     <th scope="col">CEP</th>
+                                    <th scope="col">Ação</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -76,6 +87,11 @@
                                             <td scope="col"><?php echo $rows[$i]['cidade'];; ?></td>
                                             <td scope="col"><?php echo $rows[$i]['estado']; ?></td>
                                             <td scope="col"><?php echo $rows[$i]['cep']; ?></td>
+                                            <td>
+                                                <a oncliclk="alert('joia')" href="editar.php?id= . $rows[$i]['id'] .  " class="btn btn-success">Editar</a>
+                                                <button onclick="if(confirm('Deseja realmente excluir?'){location.href='?page=excluir&id=' . $rows[$i]['id']}else{false}" type="button" class="btn btn-danger">Excluir</button>
+                                            </td>
+
                                         </tr>                       
                                 <?php } ?>
                             </tbody>

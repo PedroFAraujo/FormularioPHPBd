@@ -14,6 +14,10 @@
     background-color: #007bff;
 }
 
+th{
+    color: white;
+}
+
 .titleDado{
     text-align: center;
     font-weight: bold;
@@ -22,7 +26,7 @@
 }
 
 #tabela{
-    max-width: 780px;
+    max-width: 850px;
 }
 
 @media (max-width: 580px){

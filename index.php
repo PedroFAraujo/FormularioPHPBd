@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <!-- PÁGINA PARA FAZER O CADASTRO DO CLIENTE -->
 <html lang="en">
@@ -18,14 +17,14 @@
                     <div class="col">
                         <nav class="navbar navbar-expand-lg bg-body-tertiary, fundo">
                             <div class="container-fluid">
-                                <a id="titleNav" class="navbar-brand" href="index.html">PHP - Sistema de Cadastro ao Banco de Dados</a>
+                                <a id="titleNav" class="navbar-brand" href="index.php">PHP - Sistema de Cadastro ao Banco de Dados</a>
                                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>
                                 </button>
                                 <div class="collapse navbar-collapse" id="navbarNav">
                                     <ul class="navbar-nav">
                                         <li class="nav-item">
-                                            <a class="nav-link active" id="link-header" aria-current="page" href="index.html">Cadastrar</a>
+                                            <a class="nav-link active" id="link-header" aria-current="page" href="index.php">Cadastrar</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="tabelaDados.php">Consultar</a>
@@ -44,7 +43,7 @@
                 </div>
                 <div class="row" id="row-form">
                     <div class="col">
-                        <form method="POST" action="conexao.php">
+                        <form method="POST" action="cadastrarConfig.php">
                             <div class="mb-3">
                                 <label for="Nome" class="form-label">Nome:</label>
                                 <input type="text" class="form-control" id="exampleFormControlInput1 nome" name="nome" autocomplete="off" required>

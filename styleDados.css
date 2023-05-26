@@ -26,7 +26,11 @@ th{
 }
 
 #tabela{
-    max-width: 850px;
+    max-width: 900px;
+}
+
+.btnAcao{
+    text-decoration: none;
 }
 
 @media (max-width: 580px){

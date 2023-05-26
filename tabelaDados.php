@@ -1,17 +1,6 @@
 <?php
-    //definição dos parâmetros do banco de dados
-    define('MYSQL_HOST', 'localhost:3306');
-    define('MYSQL_USER', 'root');
-    define('MYSQL_PASSWORD', '');
-    define('MYSQL_DB_NAME', 'bd_sistema');
-
-    //conexão php com o banco de dados
-    try{
-        $PDO = new PDO('mysql:host=' . MYSQL_HOST . ';dbname=' . MYSQL_DB_NAME, MYSQL_USER, MYSQL_PASSWORD);
-    }catch (PDOException $e){
-        //se a conexão falhar a mensagem será exibida
-        echo 'Erro ao conectar com o MySQL: ' . $e->getMessage();
-    }
+    //inclui o arquivo conexao.php
+    include_once("conexao.php");
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +14,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="styleDados.css">
-        <title>PHP - Sistema de Acesso ao BD</title>
+        <title>Tabela</title>
     </head>
     <body>
         <div class="container" id="container">
@@ -33,14 +22,14 @@
                     <div class="col">
                         <nav class="navbar navbar-expand-lg bg-body-tertiary, fundo">
                             <div class="container-fluid">
-                                <a id="titleNav" class="navbar-brand" href="index.html">PHP - Sistema de Cadastro ao Banco de Dados</a>
+                                <a id="titleNav" class="navbar-brand" href="index.php">PHP - Sistema de Cadastro ao Banco de Dados</a>
                                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>
                                 </button>
                                 <div class="collapse navbar-collapse" id="navbarNav">
                                     <ul class="navbar-nav">
                                         <li class="nav-item">
-                                            <a class="nav-link active" id="link-header" aria-current="page" href="index.html">Cadastrar</a>
+                                            <a class="nav-link active" id="link-header" aria-current="page" href="index.php">Cadastrar</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="tabelaDados.php">Consultar</a>
@@ -78,22 +67,33 @@
                                     $result = $PDO->query($sql);
                                     $rows = $result->fetchAll();
 
-                                    for($i=0; $i < count($rows); $i++){ ?>
-                                        <tr>
-                                            <td scope="col"><?php echo $rows[$i]['id']; ?></td>
-                                            <td scope="col"><?php echo $rows[$i]['nome']; ?></td>
-                                            <td scope="col"><?php echo $rows[$i]['endereco']; ?></td>
-                                            <td scope="col"><?php echo $rows[$i]['bairro']; ?></td>
-                                            <td scope="col"><?php echo $rows[$i]['cidade'];; ?></td>
-                                            <td scope="col"><?php echo $rows[$i]['estado']; ?></td>
-                                            <td scope="col"><?php echo $rows[$i]['cep']; ?></td>
-                                            <td>
-                                                <a oncliclk="alert('joia')" href="editar.php?id= . $rows[$i]['id'] .  " class="btn btn-success">Editar</a>
-                                                <button onclick="if(confirm('Deseja realmente excluir?'){location.href='?page=excluir&id=' . $rows[$i]['id']}else{false}" type="button" class="btn btn-danger">Excluir</button>
-                                            </td>
-
-                                        </tr>                       
-                                <?php } ?>
+                                    for($i=0; $i < count($rows); $i++){
+                                        
+                                        //atribuição dos valores das variáveis com as linhas dos registros 
+                                        $id = $rows[$i]['id'];
+                                        $nome = $rows[$i]['nome'];
+                                        $endereco = $rows[$i]['endereco'];
+                                        $bairro = $rows[$i]['bairro']; 
+                                        $cidade = $rows[$i]['cidade']; 
+                                        $estado = $rows[$i]['estado']; 
+                                        $cep = $rows[$i]['cep'];   
+                                        
+                                        //imprime a tabela na tela
+                                        echo '<tr>
+                                                 <td>'.$id.'</td>
+                                                 <td>'.$nome.'</td>
+                                                 <td>'.$endereco.'</td>
+                                                 <td>'.$bairro.'</td>
+                                                 <td>'.$cidade.'</td>
+                                                 <td>'.$estado.'</td>
+                                                 <td>'.$cep.'</td>
+                                                 <td>
+                                                    <button class="btn btn-primary"><a class="text-light" href="editar.php?id='.$id.'">Editar</a></button>
+                                                    <button class="btn btn-danger"><a class="text-light" href="excluir.php?id='.$id.'">Excluir</a></button>
+                                                </td>
+                                              </tr>';
+                                    }
+                                ?>
                             </tbody>
                         </table>
                     </div>

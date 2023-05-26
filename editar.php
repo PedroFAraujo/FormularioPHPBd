@@ -1,3 +1,40 @@
+<?php
+    //arquivo para realizar a atualização dos dados do cliente
+
+    //inclui o arquivo conexao.php
+    include_once("conexao.php");
+
+    if(isset($_POST['editar'])){
+
+        $id = $_GET['id']; //acessando o id pela url usando o método GET e atribuindo a variável $id
+
+        //atribuição ao que o usuário escrever no formulário para as variáveis
+        $nome = $_POST['nome'];
+        $endereco = $_POST['endereco'];
+        $bairro = $_POST['bairro'];
+        $cidade = $_POST['cidade'];
+        $estado = $_POST['estado'];
+        $cep = $_POST['cep'];
+
+        /*comando SQL para editar os registros do id específico
+          o conteúdo das variáveis serão os novos registros e irão para seu campo específico no banco de dados*/
+        $sql = "UPDATE clientes SET nome='$nome', endereco='$endereco', bairro='$bairro', cidade='$cidade', estado='$estado', cep='$cep' WHERE id = $id";
+
+        //executação do comando SQL
+        $result = $PDO->query($sql);
+
+        if($result){
+            header("Location: tabelaDados.php");
+        }else{
+            echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    Não foi possivel cadastrar o cliente.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                   </div>';
+        }
+    }
+    
+    
+?>
 
 <!DOCTYPE html>
 <!-- PÁGINA PARA EDITAR O CADASTRO DO CLIENTE -->
@@ -18,14 +55,14 @@
                     <div class="col">
                         <nav class="navbar navbar-expand-lg bg-body-tertiary, fundo">
                             <div class="container-fluid">
-                                <a id="titleNav" class="navbar-brand" href="index.html">PHP - Sistema de Cadastro ao Banco de Dados</a>
+                                <a id="titleNav" class="navbar-brand" href="index.php">PHP - Sistema de Cadastro ao Banco de Dados</a>
                                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="navbar-toggler-icon"></span>
                                 </button>
                                 <div class="collapse navbar-collapse" id="navbarNav">
                                     <ul class="navbar-nav">
                                         <li class="nav-item">
-                                            <a class="nav-link active" id="link-header" aria-current="page" href="index.html">Cadastrar</a>
+                                            <a class="nav-link active" id="link-header" aria-current="page" href="index.php">Cadastrar</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="tabelaDados.php">Consultar</a>
@@ -38,14 +75,13 @@
                 </div>
                 <div class="row">
                     <div class="col titles">
-                        <h1>Cadastrar - Agendamento de Potenciais Clientes</h1>
-                        <p>Sistema Utilizado para cadastrar clientes</p>
+                        <h1>Editar</h1>
+                        <p>Sistema Utilizado para editar cadastro</p>
                     </div>
                 </div>
                 <div class="row" id="row-form">
                     <div class="col">
-                        <form method="POST" action="conexao.php">
-                            <input type="hidden" value="<?php echo $id; ?>">
+                        <form method="POST">
                             <div class="mb-3">
                                 <label for="Nome" class="form-label">Nome:</label>
                                 <input type="text" class="form-control" id="exampleFormControlInput1 nome" name="nome" autocomplete="off" required>
@@ -75,7 +111,7 @@
                                 <label for="cep" class="form-label">CEP: </label>
                                 <input type="number" class="form-control" id="exampleFormControlInput1 cep" name="cep" autocomplete="off" placeholder="xxxxx-xxx" required>
                             </div>
-                            <input type="submit" value="Editar" name="cadastrar" id="cadastrar">
+                            <input type="submit" value="Editar" name="editar" id="cadastrar">
                         </form>
                     </div>
                 </div>

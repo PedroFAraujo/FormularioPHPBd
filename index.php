@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <!-- PÁGINA PARA FAZER O CADASTRO DO CLIENTE -->
+
 <html lang="en">
     <head>
         <meta charset="UTF-8">

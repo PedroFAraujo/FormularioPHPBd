@@ -4,9 +4,17 @@
     //inclui o arquivo conexao.php
     include_once("conexao.php");
 
-    if(isset($_POST['editar'])){
+    $id = $_GET['id']; //acessando o id pela url usando o método GET e atribuindo a variável $id
 
-        $id = $_GET['id']; //acessando o id pela url usando o método GET e atribuindo a variável $id
+    $sqlSelect = "SELECT * FROM clientes WHERE id = $id"; //comando sql que exibe as informações apenas do registro específico
+
+    //executação do comando SQL
+    $result = $PDO->query($sqlSelect);
+
+    //Atribuindo o resultado dos objetos a variável $result e depois a variável $row
+    $row = $result->fetchObject();
+
+    if(isset($_POST['editar'])){
 
         //atribuição ao que o usuário escrever no formulário para as variáveis
         $nome = $_POST['nome'];
@@ -32,8 +40,7 @@
                    </div>';
         }
     }
-    
-    
+     
 ?>
 
 <!DOCTYPE html>
@@ -84,23 +91,23 @@
                         <form method="POST">
                             <div class="mb-3">
                                 <label for="Nome" class="form-label">Nome:</label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1 nome" name="nome" autocomplete="off" required>
+                                <input type="text" class="form-control" id="exampleFormControlInput1 nome" name="nome" value="<?php echo $row->nome; ?>" autocomplete="off" required>
                             </div>
                             <div class="mb-3">
                                 <label for="endereco" class="form-label">Endereco: </label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1 endereco" name="endereco" autocomplete="off" required>
+                                <input type="text" class="form-control" id="exampleFormControlInput1 endereco" name="endereco" value="<?php echo $row->endereco; ?>" autocomplete="off" required>
                             </div>
                             <div class="mb-3">
                                 <label for="bairro" class="form-label">Bairro: </label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1 bairro" name="bairro" autocomplete="off" required>
+                                <input type="text" class="form-control" id="exampleFormControlInput1 bairro" name="bairro" value="<?php echo $row->bairro; ?>" autocomplete="off" required>
                             </div>
                             <div class="mb-3">
                                 <label for="cidade" class="form-label">Cidade: </label>
-                                <input type="text" class="form-control" id="exampleFormControlInput1 cidade" name="cidade" autocomplete="off" required>
+                                <input type="text" class="form-control" id="exampleFormControlInput1 cidade" name="cidade" value="<?php echo $row->cidade; ?>" autocomplete="off" required>
                             </div>
                             <div class="mb-3">
                                 <label for="estado" class="form-label">Estado: </label>
-                                <select class="form-select" name="estado" autocomplete="off" id="estado" aria-label="Default select example">
+                                <select class="form-select" name="estado" value="<?php echo $row->estado; ?>" autocomplete="off" id="estado" aria-label="Default select example">
                                     <option value="SP">SP</option>
                                     <option value="RJ">RJ</option>
                                     <option value="MG">MG</option>
@@ -109,7 +116,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="cep" class="form-label">CEP: </label>
-                                <input type="number" class="form-control" id="exampleFormControlInput1 cep" name="cep" autocomplete="off" placeholder="xxxxx-xxx" required>
+                                <input type="number" class="form-control" id="exampleFormControlInput1 cep" name="cep" value="<?php echo $row->cep; ?>" autocomplete="off" placeholder="xxxxx-xxx" required>
                             </div>
                             <input type="submit" value="Editar" name="editar" id="cadastrar">
                         </form>

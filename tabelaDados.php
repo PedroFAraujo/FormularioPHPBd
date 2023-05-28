@@ -62,6 +62,7 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                
                                 <?php
                                     $sql = "SELECT * FROM clientes";
                                     $result = $PDO->query($sql);
@@ -94,6 +95,7 @@
                                               </tr>';
                                     }
                                 ?>
+                                
                             </tbody>
                         </table>
                     </div>
